@@ -1,0 +1,83 @@
+Python-SRM — Statistical Region Merging in Python
+=================================================
+
+Description
+-----------
+
+Python-SRM is a Python implementation of the Statistical Region Merging
+algorithm (SRM), as described in TPAMI'04 or PR'05 (see Bibliography_ for more details).
+
+.. image:: examples/lena.png
+.. image:: examples/lena-segmented.png
+
+See the `Java applet <http://www.sonycsl.co.jp/person/nielsen/SRM/>`_ for
+an online demonstration of the method.
+
+Prerequisite
+------------
+
+- `numpy <http://numpy.scipy.org>`_
+
+Usage
+-----
+
+The SRM module contains one class called ``SRM``. The class constructor
+expects two arguments:
+
+- a 3-channels array containing the image data,
+- a rough estimate of the number of expected regions.
+
+After the initialization, the segmentation can be launched with the
+method ``run`` which expects no arguments.
+
+See the following section for an example.
+
+Example
+-------
+
+::
+
+  from scipy.misc import imread
+  from matplotlib import pyplot
+  
+  from SRM import SRM
+  
+  im = imread("lena.png")
+  
+  srm = SRM(im, 256)
+  segmented = srm.run()
+  
+  pyplot.imshow(segmented/256)
+  pyplot.show()
+
+Download
+--------
+
+Directly: http://www.lix.polytechnique.fr/~schwander/python-srm/python-srm-0.1.tar.gz
+
+On PyPI: http://pypi.python.org/pypi/python-srm
+
+Darcs repository: http://www.lix.polytechnique.fr/~schwander/darcs/python-srm/
+
+.. _Bibliography:
+
+Bibliography
+------------
+
+- R. Nock, F. Nielsen: *Semi-supervised statistical region refinement for color image segmentation*. Pattern Recognition 38(6): 835-846 (2005)
+- R. Nock, F. Nielsen: *Statistical Region Merging*. IEEE Trans. Pattern Anal. Mach. Intell. 26(11): 1452-1458 (2004)
+- F. Nielsen: `Visual Computing: Geometry, Graphics, and Vision <http://www.sonycsl.co.jp/person/nielsen/visualcomputing/>`_. Charles River Media, ISBN 1-58450-427-7 (2005)
+
+Other implementations
+---------------------
+
+- A Java one by one of the original authors, F. Nielsen: http://www.lix.polytechnique.fr/~nielsen/Srmjava.java
+- A Matlab implemention by S. Boltz: http://www.mathworks.com/matlabcentral/fileexchange/25619-image-segmentation-using-statistical-region-merging
+
+Licence
+-------
+
+Python-srm is free software, released under the term of the BSD license.
+
+Copyright 2010-2012 Olivier Schwander <schwander@lix.polytechnique.fr>
+
